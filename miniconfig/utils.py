@@ -1,9 +1,12 @@
 import os
 import subprocess
 
-def make_config(dest_dir=None, config_dict):
+def make_config(config_dict, dest_dir=None):
     """
     Create a miniconfig-compatible config file from keys and values
+    :param config_dict: the config dict to write
+    :param dest_dir: destination directory to write `config` file to
+                     (optional: defaults to current working directory)
     """
     dest_dir = dest_dir or os.getcwd()
     pth = os.path.join(dest_dir, 'config')
@@ -13,9 +16,14 @@ def make_config(dest_dir=None, config_dict):
         fil.write(s)
 
 
-def from_heroku(dest_dir=None, app=None):
+def from_heroku(app=None, dest_dir=None):
     """
     Create a miniconfig-compatible config file from a Heroku config
+    :param app: name of Heroku app whose config will be written
+                (optional: defaults to app corresponding to current working
+                directory)
+    :param dest_dir: destination directory to write `config` file to
+                     (optional: defaults to current working directory)
     """
     command = ["heroku", "config", "-s"]
     if app:
@@ -34,6 +42,7 @@ def get_config(dest=None):
     information in the form of "key=value" pairs separated by newlines, or
     filepaths pointing to other config files whose key-value pairs will be
     merged
+    :param dest: file path to read config from
     """
     dest = dest or "config"
     other_configs = []
