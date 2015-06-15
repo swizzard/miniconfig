@@ -4,6 +4,9 @@
 
 A minimal, opinionated config solution for Python.
 
+Not `ini`, not `json`, not `yaml`, just simple `=`-separated key-value pairs in
+a plain text file. If you want something more involved, move along.
+
 ## Why
 
 Config is irritating--there are a lot of solutions, and stuff gets really
@@ -60,6 +63,19 @@ is valid:
 
     /Users/samuelraker/myproject/other_stuff/whatever_config
 
+
+### Oh Also
+
+There are two other things:
+
+* `make_config` takes an optional destination directory (defaulting to the
+  current working directory) and a dictionary, and writes the contents of that
+  dictionary in `miniconfig`-parsable format to a file named `config` in that
+  directory.
+* `from_heroku` takes an optional destination directory (defaulting to the
+  current working directory) and an optional `app` name and writes the result
+  of calling `heroku config -s [--app app]` in `miniconfig`-parsable format to
+  a file named `config` in that directory.
 
 ## Who
 
