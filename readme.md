@@ -23,21 +23,20 @@ Mini(config)mally:
 In brief, `miniconfig.config` is a Python `dict` containing your configuration
 stuff. By default, it's sourced from a file called `config` in the current
 directory. This file must contain lines that are:
-    
-    * key-value pairs: `mykey=myval`
-    * file paths: `/Users/samuelraker/myproject/somedir/config`
+
+* key-value pairs: `mykey=myval`
+* file paths: `/Users/samuelraker/myproject/somedir/config`
 
 The files at each file path will be read in the same way as the original, and
 their key-value pairs will be merged together. Caveats:
 
-    * You can create cyclical dependencies if `configA` points to `configB`
-      that points to `configA`. Don't do this. 
-      
-    * `miniconfig` doesn't do hierarchies or sections or any other kind of
-      automatic namespacing; configurations are merged via `dict.update`, so
-      the potential exists for values to get clobbered. Just do it yourself:
-      call your database password `database_password` and your API password
-      `API_password` and it'll be fine.
+* You can create cyclical dependencies if `configA` points to `configB` that
+  points to `configA`. Don't do this. 
+* `miniconfig` doesn't do hierarchies or sections or any other kind of
+  automatic namespacing; configurations are merged via `dict.update`, so the
+  potential exists for values to get clobbered. Just do it yourself: call your
+  database password `database_password` and your API password `API_password`
+  and it'll be fine.
 
 Any line starting with a `#` will be ignored as a comment.
 
