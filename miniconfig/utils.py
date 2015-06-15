@@ -55,7 +55,7 @@ def get_config(dest=None):
             elif line.startswith("#"):
                 pass
             else:
-                key, val = line.split('=', maxsplit=1)
+                key, val = line.split('=', 1)
                 config_dict[key] = val
     for config_file in other_configs:
         config_dict.update(get_config(config_file))
