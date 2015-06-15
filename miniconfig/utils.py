@@ -1,14 +1,14 @@
 import os
 import subprocess
 
-def make_config(dest_dir=None, **config):
+def make_config(dest_dir=None, config_dict):
     """
     Create a miniconfig-compatible config file from keys and values
     """
     dest_dir = dest_dir or os.getcwd()
     pth = os.path.join(dest_dir, 'config')
     s = "\n".join(["{item[0]}={item[1]}".format(item=item) for item in
-                   config.iteritems()])
+                   config_dict.iteritems()])
     with open(pth, "w") as fil:
         fil.write(s)
 
@@ -43,6 +43,8 @@ def get_config(dest=None):
             line = line.rstrip()
             if os.path.isfile(line):
                 other_configs.append(line)
+            elif line.startswith("#"):
+                pass
             else:
                 key, val = line.split('=', maxsplit=1)
                 config_dict[key] = val
